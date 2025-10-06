@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Betaal QR</title></head>
+<body>
+  <h1>Scan en betaal €5</h1>
+  <button id="pay">Genereer QR</button>
+  <div id="qr"></div>
+
+<script>
+document.getElementById('pay').onclick = async () => {
+  const r = await fetch('/create-session', { method: 'POST' });
+  const j = await r.json();
+  const url = j.url;
+
+  // Maak een simpele QR via een openbare API (of gebruik een qr-lib)
+  // Let: in productie liever een eigen QR-generator of library gebruiken.
+  const qrImg = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}`;
+  document.getElementById('qr').innerHTML = `<img src="${qrImg}" alt="QR"> <p>Of open: <a href="${url}">betaalpagina</a></p>`;
+};
+</script>
+</body>
+</html>
