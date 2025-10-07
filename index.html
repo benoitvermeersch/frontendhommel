@@ -12,7 +12,7 @@
   <script>
     document.getElementById('pay').addEventListener('click', async () => {
       try {
-        const res = await fetch('http://api.hommels.fun/create-session', {
+        const res = await fetch('https://api.hommels.fun/create-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
         });
