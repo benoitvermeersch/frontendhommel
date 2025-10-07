@@ -25,6 +25,22 @@
       margin-bottom: 10px;
     }
 
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #FFD700;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
     p {
       font-size: 20px;
     }
@@ -35,6 +51,13 @@
   <span class="bee">🐝</span>
   <h1>Er is iets foutgelopen!</h1>
   <p>Geen ingang voor jou 😢</p>
+  <button id="pay">Nee, ik wil toch komen!</button>
+
+  <script>
+    document.getElementById('pay').addEventListener('click', () => {
+      window.location.href = 'https://hommels.fun';
+    });
+  </script>
 </body>
 
 </html>
