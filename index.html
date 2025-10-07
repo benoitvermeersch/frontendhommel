@@ -115,10 +115,19 @@
 
   <script>
     document.getElementById('pay').addEventListener('click', async () => {
+      const formData = {
+        firstname: document.getElementById('firstname').value,
+        lastname: document.getElementById('lastname').value,
+        email: document.getElementById('email').value,
+        instagram: document.getElementById('instagram').value,
+        commentaar: document.getElementById('commentaar').value,
+      };
+
       try {
         const res = await fetch('https://api.hommels.fun/payments/create-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
         });
         const data = await res.json();
         if (data.url) {
