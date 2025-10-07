@@ -3,13 +3,14 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Betaal €5 aan Hommels</title>
+  <title>BOO PARTY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
       margin-top: 50px;
+      margin-bottom: 60px;
       background-color: #000;
       color: #fff;
     }
@@ -19,7 +20,49 @@
       margin-bottom: 30px;
     }
 
+    form {
+      display: inline-block;
+      text-align: left;
+      background-color: #111;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 6px;
+      background-color: #333;
+      color: #fff;
+      font-size: 16px;
+      resize: vertical;
+      /* allows manual resizing */
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #bbb;
+    }
+
+    p {
+      margin-top: 25px;
+      font-size: 15px;
+      color: #ddd;
+    }
+
     button {
+      margin-top: 6px;
       padding: 15px 30px;
       font-size: 18px;
       font-weight: bold;
@@ -29,6 +72,7 @@
       border-radius: 8px;
       color: #000;
       transition: transform 0.2s;
+      width: 100%;
     }
 
     button:hover {
@@ -45,8 +89,29 @@
 
 <body>
   <span class="bee">🐝</span>
-  <h1>Betaal €5 voor toegang</h1>
-  <button id="pay">Betaal nu!</button>
+  <h1>Je bent ook uitgenodigd!</h1>
+  <h2>Invullen aub</h2>
+
+  <form id="payment-form">
+    <label for="firstname">Voornaam</label>
+    <input type="text" id="firstname" name="firstname" placeholder="" required>
+
+    <label for="lastname">Achternaam</label>
+    <input type="text" id="lastname" name="lastname" placeholder="" required>
+
+    <label for="email">Emailadres</label>
+    <input type="email" id="email" name="email" placeholder="" required>
+
+    <label for="instagram">Neem je iemand mee? Zoja, sliden we zelf in de DM's van je +1!</label>
+    <input type="text" id="instagram" name="instagram" placeholder="@insta" required>
+
+    <label for="commentaar">Nog commentaar?</label>
+    <textarea id="commentaar" name="commentaar" placeholder="" rows="3"></textarea>
+
+    <p>Er is een kleine ingang gevraagd. Nee Jobbe, niet in maandelijkse schijven.</p>
+
+    <button type="button" id="pay">Betaal nu!</button>
+  </form>
 
   <script>
     document.getElementById('pay').addEventListener('click', async () => {
