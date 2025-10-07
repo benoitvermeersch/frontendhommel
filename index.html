@@ -5,11 +5,48 @@
   <meta charset="utf-8">
   <title>Betaal €5 aan Hommels</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #000;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #FFD700;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .bee {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
+    }
+  </style>
 </head>
 
-<body style="font-family:sans-serif;text-align:center;margin-top:50px;">
+<body>
+  <span class="bee">🐝</span>
   <h1>Betaal €5 voor toegang</h1>
-  <button id="pay" style="padding:15px 30px;font-size:18px;cursor:pointer;">Betaal met Stripe / Bancontact</button>
+  <button id="pay">Betaal nu!</button>
 
   <script>
     document.getElementById('pay').addEventListener('click', async () => {
