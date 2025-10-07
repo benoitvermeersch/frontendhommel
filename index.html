@@ -85,10 +85,6 @@
       display: block;
     }
 
-    .error {
-      border: 2px solid red !important;
-    }
-
     .required-label::after {
       content: " *";
       color: red;
@@ -102,7 +98,6 @@
   <h2>Invullen aub</h2>
 
   <form id="payment-form">
-    <!-- Update the labels for required fields -->
     <label for="firstname" class="required-label">Voornaam</label>
     <input type="text" id="firstname" name="firstname" required>
 
@@ -131,10 +126,7 @@
       requiredFields.forEach(id => {
         const field = document.getElementById(id);
         if (!field.value.trim()) {
-          field.classList.add('error');
           allFilled = false;
-        } else {
-          field.classList.remove('error');
         }
       });
 
