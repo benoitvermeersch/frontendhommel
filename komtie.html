@@ -21,13 +21,21 @@
             margin-bottom: 30px;
         }
 
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            /* Make table scrollable on mobile */
+            margin-top: 20px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
             background-color: #111;
             border-radius: 8px;
             overflow: hidden;
+            min-width: 600px;
+            /* Ensures table looks okay on wider screens */
         }
 
         th,
@@ -56,7 +64,8 @@
         }
 
         button {
-            margin-top: 6px;
+            margin-top: 40px;
+            /* 40px under the table */
             padding: 15px 30px;
             font-size: 18px;
             font-weight: bold;
@@ -67,12 +76,28 @@
             color: #000;
             transition: transform 0.2s;
             width: 100%;
+            max-width: 300px;
+            /* Optional: keeps button from being too wide */
         }
 
         button:hover {
             transform: scale(1.05);
         }
+
+        @media (max-width: 600px) {
+
+            th,
+            td {
+                padding: 8px 4px;
+            }
+
+            table {
+                min-width: unset;
+                /* Allows table to shrink on very small screens */
+            }
+        }
     </style>
+
 </head>
 
 <body>
@@ -95,9 +120,13 @@
         </tbody>
     </table>
 
-    <button type="button" id="pay">Ik wil mij inschrijven!</button>
+    <button type="button" id="inschrijven">Ik wil mij inschrijven!</button>
 
     <script>
+        document.getElementById('inschrijven').addEventListener('click', () => {
+            window.location.href = 'https://hommels.fun';
+        });
+
         const SUPABASE_URL = 'https://vummwktedjmdvltypanh.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1bW13a3RlZGptZHZsdHlwYW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MTg0MjYsImV4cCI6MjA3NTQ5NDQyNn0.eJRMRFyb9f1GutNY9NToh6eYdQ9E9pyeax6xh5mKzEk'; // ⚠️ use anon key only
 
