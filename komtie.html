@@ -8,94 +8,104 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         body {
-            font-family: sans-serif;
-            text-align: center;
-            margin: 50px auto;
-            background-color: #000;
-            color: #fff;
-            max-width: 800px;
-        }
+      font-family: sans-serif;
+      text-align: center;
+      margin: 50px auto;
+      background-color: #000;
+      color: #fff;
+      max-width: 800px;
+    }
 
-        h1 {
-            font-size: 32px;
-            margin-bottom: 30px;
-        }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
 
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-            /* Make table scrollable on mobile */
-            margin-top: 20px;
-        }
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 20px;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #111;
-            border-radius: 8px;
-            overflow: hidden;
-            min-width: 600px;
-            /* Ensures table looks okay on wider screens */
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #111;
+      border-radius: 8px;
+      overflow: hidden;
+      min-width: 600px;
+    }
 
-        th,
-        td {
-            padding: 12px 8px;
-            border-bottom: 1px solid #333;
-            text-align: left;
-            vertical-align: top;
-            word-wrap: break-word;
-            white-space: normal;
-        }
+    th,
+    td {
+      padding: 12px 8px;
+      border-bottom: 1px solid #333;
+      text-align: left;
+      vertical-align: top;
+      word-wrap: break-word;
+      white-space: normal;
+    }
 
-        th {
-            background-color: #222;
-            font-weight: normal;
-        }
+    th {
+      background-color: #222;
+      font-weight: normal;
+    }
 
-        tr:hover {
-            background-color: #1a1a1a;
-        }
+    tr:hover {
+      background-color: #1a1a1a;
+    }
 
-        .bee {
-            font-size: 48px;
-            margin-bottom: 10px;
-            display: block;
-        }
+    .bee {
+      font-size: 48px;
+      margin-bottom: 10px;
+      display: block;
+    }
 
-        button {
-            margin-top: 40px;
-            /* 40px under the table */
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            background-color: #FFD700;
-            border: none;
-            border-radius: 8px;
-            color: #000;
-            transition: transform 0.2s;
-            width: 100%;
-            max-width: 300px;
-            /* Optional: keeps button from being too wide */
-        }
+    button {
+      margin-top: 40px;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #FFD700;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      transition: transform 0.2s;
+      width: auto;
+      max-width: 300px;
+    }
 
-        button:hover {
-            transform: scale(1.05);
-        }
+    button:hover {
+      transform: scale(1.05);
+    }
 
-        @media (max-width: 600px) {
+    @media (max-width: 600px) {
 
-            th,
-            td {
-                padding: 8px 4px;
-            }
+      body {
+        margin: 20px auto;
+      }
 
-            table {
-                min-width: unset;
-                /* Allows table to shrink on very small screens */
-            }
-        }
+      table {
+        min-width: unset;
+      }
+
+      th,
+      td {
+        padding: 6px 4px;
+        font-size: 12px;
+      }
+
+      th {
+        font-size: 13px;
+      }
+
+      button {
+        width: auto;
+        font-size: 16px;
+        padding: 12px 24px;
+      }
+    }
     </style>
 
 </head>
