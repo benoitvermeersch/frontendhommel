@@ -54,6 +54,24 @@
             margin-bottom: 10px;
             display: block;
         }
+
+        button {
+            margin-top: 6px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #FFD700;
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            transition: transform 0.2s;
+            width: 100%;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 
@@ -76,6 +94,8 @@
             </tr>
         </tbody>
     </table>
+
+    <button type="button" id="pay">Ik wil mij inschrijven!</button>
 
     <script>
         const SUPABASE_URL = 'https://vummwktedjmdvltypanh.supabase.co';
