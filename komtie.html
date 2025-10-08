@@ -1,110 +1,117 @@
 <!doctype html>
 <html lang="nl">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <title>Hommels die betaald hebben 🐝</title>
+    <title>BOO PARTY - Aanwezigen 🐝</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-      body {
-        font-family: sans-serif;
-        text-align: center;
-        margin: 50px auto;
-        background-color: #000;
-        color: #fff;
-        max-width: 800px;
-      }
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin: 50px auto;
+            background-color: #000;
+            color: #fff;
+            max-width: 800px;
+        }
 
-      h1 {
-        font-size: 32px;
-        margin-bottom: 30px;
-      }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-        background-color: #111;
-        border-radius: 8px;
-        overflow: hidden;
-      }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #111;
+            border-radius: 8px;
+            overflow: hidden;
+        }
 
-      th, td {
-        padding: 12px 8px;
-        border-bottom: 1px solid #333;
-        text-align: left;
-        vertical-align: top;
-        word-wrap: break-word;
-        white-space: normal;
-      }
+        th,
+        td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #333;
+            text-align: left;
+            vertical-align: top;
+            word-wrap: break-word;
+            white-space: normal;
+        }
 
-      th {
-        background-color: #222;
-      }
+        th {
+            background-color: #222;
+            font-weight: normal;
+        }
 
-      tr:hover {
-        background-color: #1a1a1a;
-      }
+        tr:hover {
+            background-color: #1a1a1a;
+        }
 
-      .bee {
-        font-size: 48px;
-        margin-bottom: 10px;
-        display: block;
-      }
+        .bee {
+            font-size: 48px;
+            margin-bottom: 10px;
+            display: block;
+        }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
     <span class="bee">🐝</span>
-    <h2>Hommels die komen:</h2>
+    <h2>Wie is allemaal aanwezig?</h2>
     <table id="hommels">
-      <thead>
-        <tr>
-          <th>Datum</th>
-          <th>Voornaam</th>
-          <th>Achternaam</th>
-          <th>Commentaar</th>
-          <th>+1 (Instagram)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td colspan="5">Laden...</td></tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Voornaam</th>
+                <th>Achternaam</th>
+                <th>Commentaar</th>
+                <th>+1 (Instagram)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="5">Laden...</td>
+            </tr>
+        </tbody>
     </table>
 
     <script>
-      const SUPABASE_URL = 'https://vummwktedjmdvltypanh.supabase.co';
-      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1bW13a3RlZGptZHZsdHlwYW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MTg0MjYsImV4cCI6MjA3NTQ5NDQyNn0.eJRMRFyb9f1GutNY9NToh6eYdQ9E9pyeax6xh5mKzEk'; // ⚠️ use anon key only
+        const SUPABASE_URL = 'https://vummwktedjmdvltypanh.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1bW13a3RlZGptZHZsdHlwYW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MTg0MjYsImV4cCI6MjA3NTQ5NDQyNn0.eJRMRFyb9f1GutNY9NToh6eYdQ9E9pyeax6xh5mKzEk'; // ⚠️ use anon key only
 
-      const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-      async function loadHommels() {
-        const tableBody = document.querySelector('#hommels tbody');
-        tableBody.innerHTML = '<tr><td colspan="5">Laden...</td></tr>';
+        async function loadHommels() {
+            const tableBody = document.querySelector('#hommels tbody');
+            tableBody.innerHTML = '<tr><td colspan="5">Laden...</td></tr>';
 
-        const { data, error } = await supabase
-          .from('inschrijvingen')
-          .select('created_at, firstname, lastname, commentaar, instagram')
-          .order('created_at', { ascending: false });
+            const { data, error } = await client
+                .from('inschrijvingen')
+                .select('created_at, firstname, lastname, commentaar, instagram')
+                .order('created_at', { ascending: false });
 
-        if (error) {
-          tableBody.innerHTML = `<tr><td colspan="5">Fout bij laden: ${error.message}</td></tr>`;
-          return;
-        }
+            console.log(data, error);
 
-        if (!data || data.length === 0) {
-          tableBody.innerHTML = '<tr><td colspan="5">Nog geen hommels 🐝</td></tr>';
-          return;
-        }
+            if (error) {
+                tableBody.innerHTML = `<tr><td colspan="5">Fout bij laden: ${error.message}</td></tr>`;
+                return;
+            }
 
-        const formatter = new Intl.DateTimeFormat('nl-NL', {
-          hour: '2-digit',
-          minute: '2-digit',
-          day: '2-digit',
-          month: 'short',
-        });
+            if (!data || data.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="5">Nog geen hommels 🐝</td></tr>';
+                return;
+            }
 
-        tableBody.innerHTML = data.map(row => `
+            const formatter = new Intl.DateTimeFormat('nl-NL', {
+                hour: '2-digit',
+                minute: '2-digit',
+                day: '2-digit',
+                month: 'short',
+            });
+
+            tableBody.innerHTML = data.map(row => `
           <tr>
             <td>${formatter.format(new Date(row.created_at))}</td>
             <td>${row.firstname || ''}</td>
@@ -113,9 +120,10 @@
             <td>${row.instagram || ''}</td>
           </tr>
         `).join('');
-      }
+        }
 
-      loadHommels();
+        loadHommels();
     </script>
-  </body>
+</body>
+
 </html>
