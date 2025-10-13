@@ -88,12 +88,14 @@
 
       table {
         min-width: unset;
+        table-layout: fixed; /* ensures equal column widths */
       }
 
       th,
       td {
-        padding: 6px 4px;
+        padding: 4px 2px;
         font-size: 12px;
+        word-break: break-word; /* prevents long links from stretching the column */
       }
 
       th {
