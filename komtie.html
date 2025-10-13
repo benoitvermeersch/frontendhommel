@@ -118,6 +118,7 @@
 <body>
   <span class="bee">🐝</span>
   <h2>Wie is allemaal aanwezig?</h2>
+  <h3 id="count"></h3>
   <table id="hommels">
     <colgroup>
       <col style="width:15%;"> <!-- Datum -->
@@ -181,6 +182,8 @@
         day: '2-digit',
         month: 'short',
       });
+
+      document.getElementById('count').textContent = `${data.length} hommels`;
 
       tableBody.innerHTML = data.map(row => `
           <tr>
