@@ -2,12 +2,12 @@
 <html lang="nl">
 
 <head>
-    <meta charset="utf-8">
-    <title>BOO PARTY - Aanwezigen 🐝</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        body {
+  <meta charset="utf-8">
+  <title>BOO PARTY - Aanwezigen 🐝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body {
       font-family: sans-serif;
       text-align: center;
       margin: 50px auto;
@@ -43,7 +43,6 @@
       border-bottom: 1px solid #333;
       text-align: left;
       vertical-align: top;
-      word-wrap: break-word;
       white-space: normal;
       word-break: break-word;
     }
@@ -90,14 +89,16 @@
 
       table {
         min-width: unset;
-        table-layout: fixed; /* ensures equal column widths */
+        table-layout: fixed;
+        /* ensures equal column widths */
       }
 
       th,
       td {
-        padding: 4px 2px;
+        padding: 6px 4px;
         font-size: 12px;
-        word-break: break-word; /* prevents long links from stretching the column */
+        word-break: break-word;
+        /* prevents long links from stretching the column */
       }
 
       th {
@@ -110,71 +111,78 @@
         padding: 12px 24px;
       }
     }
-    </style>
+  </style>
 
 </head>
 
 <body>
-    <span class="bee">🐝</span>
-    <h2>Wie is allemaal aanwezig?</h2>
-    <table id="hommels">
-        <thead>
-            <tr>
-                <th>Datum</th>
-                <th>Voornaam</th>
-                <th>Achternaam</th>
-                <th>Commentaar</th>
-                <th>+1 (Instagram)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td colspan="5">Laden...</td>
-            </tr>
-        </tbody>
-    </table>
+  <span class="bee">🐝</span>
+  <h2>Wie is allemaal aanwezig?</h2>
+  <table id="hommels">
+    <colgroup>
+      <col style="width:15%;"> <!-- Datum -->
+      <col style="width:15%;"> <!-- Voornaam -->
+      <col style="width:20%;"> <!-- Achternaam -->
+      <col style="width:30%;"> <!-- Commentaar (wider) -->
+      <col style="width:20%;"> <!-- +1 (Instagram) -->
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Datum</th>
+        <th>Voornaam</th>
+        <th>Achternaam</th>
+        <th>Commentaar</th>
+        <th>+1 (Instagram)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="5">Laden...</td>
+      </tr>
+    </tbody>
+  </table>
 
-    <button type="button" id="inschrijven">Ik wil mij inschrijven!</button>
+  <button type="button" id="inschrijven">Ik wil mij inschrijven!</button>
 
-    <script>
-        document.getElementById('inschrijven').addEventListener('click', () => {
-            window.location.href = 'https://hommels.fun';
-        });
+  <script>
+    document.getElementById('inschrijven').addEventListener('click', () => {
+      window.location.href = 'https://hommels.fun';
+    });
 
-        const SUPABASE_URL = 'https://vummwktedjmdvltypanh.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1bW13a3RlZGptZHZsdHlwYW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MTg0MjYsImV4cCI6MjA3NTQ5NDQyNn0.eJRMRFyb9f1GutNY9NToh6eYdQ9E9pyeax6xh5mKzEk'; // ⚠️ use anon key only
+    const SUPABASE_URL = 'https://vummwktedjmdvltypanh.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1bW13a3RlZGptZHZsdHlwYW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MTg0MjYsImV4cCI6MjA3NTQ5NDQyNn0.eJRMRFyb9f1GutNY9NToh6eYdQ9E9pyeax6xh5mKzEk'; // ⚠️ use anon key only
 
-        const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        async function loadHommels() {
-            const tableBody = document.querySelector('#hommels tbody');
-            tableBody.innerHTML = '<tr><td colspan="5">Laden...</td></tr>';
+    async function loadHommels() {
+      const tableBody = document.querySelector('#hommels tbody');
+      tableBody.innerHTML = '<tr><td colspan="5">Laden...</td></tr>';
 
-            const { data, error } = await client
-                .from('inschrijvingen')
-                .select('created_at, firstname, lastname, commentaar, instagram')
-                .order('created_at', { ascending: false });
+      const { data, error } = await client
+        .from('inschrijvingen')
+        .select('created_at, firstname, lastname, commentaar, instagram')
+        .order('created_at', { ascending: false });
 
-            console.log(data, error);
+      console.log(data, error);
 
-            if (error) {
-                tableBody.innerHTML = `<tr><td colspan="5">Fout bij laden: ${error.message}</td></tr>`;
-                return;
-            }
+      if (error) {
+        tableBody.innerHTML = `<tr><td colspan="5">Fout bij laden: ${error.message}</td></tr>`;
+        return;
+      }
 
-            if (!data || data.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="5">Nog geen hommels 🐝</td></tr>';
-                return;
-            }
+      if (!data || data.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="5">Nog geen hommels 🐝</td></tr>';
+        return;
+      }
 
-            const formatter = new Intl.DateTimeFormat('nl-NL', {
-                hour: '2-digit',
-                minute: '2-digit',
-                day: '2-digit',
-                month: 'short',
-            });
+      const formatter = new Intl.DateTimeFormat('nl-NL', {
+        hour: '2-digit',
+        minute: '2-digit',
+        day: '2-digit',
+        month: 'short',
+      });
 
-            tableBody.innerHTML = data.map(row => `
+      tableBody.innerHTML = data.map(row => `
           <tr>
             <td>${formatter.format(new Date(row.created_at))}</td>
             <td>${row.firstname || ''}</td>
@@ -183,10 +191,10 @@
             <td>${row.instagram || ''}</td>
           </tr>
         `).join('');
-        }
+    }
 
-        loadHommels();
-    </script>
+    loadHommels();
+  </script>
 </body>
 
 </html>
